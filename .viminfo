@@ -8,37 +8,82 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/background
+~MSle0~/isUnLoaded
 
 # Last Substitute Search Pattern:
-~MSle0&default
+~MSle0&\r
 
 # Last Substitute String:
-$ v1.3.1
+$
 
 # Command Line History (newest to oldest):
-:q!
 :q
-:tabnew www/app/scripts/controllers/issues.js
-:w
 :wq
-:qa
-:w!
-:tabnew ../../application/controllers/base.php
-:Q
-:tabnew ../../application/config/autoload.php
-:51
-:tabnew ../core/Controller.php
-:346
-:1171
-:tabnew ../core/Loader.php
-:'<,'>s/default/crashlog/g
-:tabnew base.php
+:tabnew ../scripts/controllers/search.js
+:w
+:tabnew www/app/views/wiki/wiki.html
+:tabnew www/app/views/file/index.html
+:tabnew www/app/scripts/factories/helper.js
+:tabnew application/controllers/api/file.php
+:tabnew www/app/scripts/constants.js
+:tabnew www/app/scripts/controllers/issues.js
+:tabnew application/controllers/api/base.php
+:tabnew www/app/scripts/directives/issueContextMenu.js
 :W
-:107
-:%s/orig_width/origWidth/g
+:tabnew www/app/views/issue/view.html
+:tabnew www/app/scripts/factories/issues.js
+:tabnew application/controllers/api/issues.php
+:tabnew www/app/views/issue/addIssue.html
+:s
+:94
+:tabnew www/app/vi
 
 # Search String History (newest to oldest):
+?/isUnLoaded
+?/loadNotifyUnreadList
+?/notificationUnread
+?/getNotifications
+?/notificationCount
+?/showActionButtons
+?/_shortFileName
+?/listFilesInFolder
+?/console.log
+?/console
+?/$scope.follow.follows
+? \<configReader\>
+?/loadFollowUserList
+?/getTargetObjectFromConfig
+?/loadIss
+?/pK
+?/issueService.followUserList
+?/followUserList
+?/handleRemoveFollowUser
+? \<userInfo\>
+? \<loadProjectList\>
+? \<loadProjectConfig\>
+? \<getIssueInfo\>
+? \<viewIssueCtrl\>
+? \<loadIssueInfo\>
+? \<scope\>
+? \r
+?/%s/\r//g
+?/loadIssueList
+? \<projectList\>
+?/loadProjectConfig
+? \<dashboardProjectCtrl\>
+?/title-icon
+?/syntax 
+?/syntax enable
+?/q
+?/showmatch
+? ^\d\{3}√ø
+? ^
+? \<Stat\>
+? \<angular\>
+?/filter
+?/.agileTitle a
+?/.assigneeFront
+? \<stringFormater\>
 ?/background
 ?/mobileprovision
 ?/sdk_crashes
@@ -64,7 +109,6 @@ $ v1.3.1
 ?/expiredDate
 ?/expiredDate,
 ?/ag_exp
-? ^
 ?/adsa
 ?/daas
 ?/dadas
@@ -95,50 +139,6 @@ $ v1.3.1
 ?/content
 ?/responseJSON
 ?/getInfoPlistValueByKey
-?/infoPlistArray
-?/package name
-?/detectedFormat
-?/format
-?/ddsa
-?/try
-?/_file_get_contents
-?/111
-?/parseing info.plist
-?/RECHARGE_STATUS_SUCCESS
-?/status
-?/sdkContent
-?/sdkCreate
-?/createimage
-?/_addBorder
-?/backImage
-?/logoTargetWidth
-?/logoTargetHeight
-?/imageHeight
-?/imagecreatefromjpeg
-?/resizeImage
-?/dsda
-?/logoImage
-?/_addRadus
-?/imageWidth
-?/radius,
-?/imageHeight,
-?/logoSourceWidth
-?/logoSize
-?/create
-?/_getItRounderCorner
-?/imagecreatefrompng
-?/image
-?/this
-?/addLogo
-?/addLogoAfterProcess
-?/_bulkSize
-?/bu
-?/appData
-?/aas
-?/_sqlLogFileDir
-?/_runningStatus
-?/_filterdAffectedAkeyFile
-?/_affectedAkeyFile
 
 # Expression History (newest to oldest):
 
@@ -149,353 +149,486 @@ $ v1.3.1
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	LINE	0
-	$db['default']['dbdriver'] = 'mysql';
-	$db['default']['port'] = "3306";
-	$db['default']['dbprefix'] = 'kuai_';
-	$db['default']['pconnect'] = true;
-	$db['default']['db_debug'] = TRUE;
-	$db['default']['cache_on'] = FALSE;
-	$db['default']['cachedir'] = '';
-	$db['default']['char_set'] = 'utf8';
-	$db['default']['dbcollat'] = 'utf8_general_ci';
-	$db['default']['swap_pre'] = '';
-	$db['default']['autoinit'] = TRUE;
-	$db['default']['stricton'] = FALSE;
+"0	CHAR	0
+	<span class="title-panel"> 
+	                            <a ui-sref="project.wikis({pKey:pKey})" >Wiki</a>
+	                        </span> 
+	                        <slick ng-repeat="parent in wikiInfo.parentList">
+	                        <i class="fa fa-caret-right title-icon" style="padding-left:5px;"></i>
+	                        <span class="title-panel" style="padding-left:10px;"> 
+	                            <a ui-sref="project.wiki({pKey:parent.pKey,
+	                                shortcut:parent.shortcut})" >{{parent.shortcut}}</a>
+	                        </span> 
+	                        </slick>
+	                        <i class="fa fa-caret-right" style="padding-left:5px;"></i>
+	
 ""1	LINE	0
-	hi MatchParen ctermbg=blue ctermfg=white
+	                        </span> 
 "2	LINE	0
-	set domatchparen
+	                <span class="title-panel"> 
 "3	LINE	0
-	Â¶ÇÊûúË¶ÅÊõ¥ÊîπÈ¢úËâ≤ÔºåÂèØ‰ª•Áî®hiÔºå‰æãÂ¶ÇÔºö
-"4	LINE	0
-	hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=black
+	
+"4	CHAR	0
+	v <sclick ng-if="!list.paths">
+	                    Êñá‰ª∂Â∫ì
+	                </sclick>
+	                <sclick ng-if="list.paths">
+	                    <a ui-sref="project.file({pKey:pKey, folderKey:''})">Êñá‰ª∂Â∫ì</a>
+	                    <slick ng-repeat="item in list.paths">
+	                    <i class="fa fa-caret-right" style="padding-left:5px;"></i>
+	                        <sclick ng-if="$last || !list.paths.length">
+	                            <span style="padding-left:5px;">{{item.ff_name}}</span>
+	                        </sclick>
+	                        <sclick ng-if="!$last">
+	                            <a ui-sref="project.file({pKey:pKey, folderKey:item.ff_key})" style="padding-left:5px;">{{item.ff_name}}</a>
+	                        </sclick>
+	                    </slick>
+	                </sclick>
+	
 "5	LINE	0
-	=== END_DOC
-	" vim: set ts=4 sw=4 foldmethod=marker foldmarker={{{,}}} foldlevel=2:
+	                                </slick>
 "6	LINE	0
+	                                <slick ng-show="showActionButtons" class="pull-right">
+"7	LINE	0
 	
-	" vim global plugin that provides a nice tree explorer
-	" Last Change:  22 jan 2007
-	" Maintainer:   Martin Grenfell <martin_grenfell at msn dot com>
-	let s:NERD_tree_version = '1.3.1'
-	
-	"A help file is installed when the script is run for the first time. 
-	"Go :help NERD_tree.txt to see it.
-	
-	" SECTION: Script init stuff {{{1
-	"============================================================
-	if exists("loaded_nerd_tree")
-	    finish
-	endif
-	if v:version < 700
-	    echoerr "NERDTree: this plugin requires vim >= 7. DOWNLOAD IT! You'll thank me later!"
-	    finish
-	endif
-	let loaded_nerd_tree = 1
-	"Function: s:InitVariable() function {{{2
-	"This function is used to initialise a given variable to a given value. The
-	"variable is only initialised if it does not exist prior
-	"
-	"Args:
-	"var: the name of the var to be initialised
-	"value: the value to initialise var to
-	"
-	"Returns:
-	"1 if the var is set, 0 otherwise
-	function s:InitVariable(var, value)
-	    if !exists(a:var)
-	        exec 'let ' . a:var . ' = ' . "'" . a:value . "'"
-	        return 1
-	    endif
-	    return 0
-	endfunction
-	
-	"SECTION: Init variable calls {{{2 
-	call s:InitVariable("g:NERDTreeChDirMode", 1)
-	if !exists("g:NERDTreeIgnore")
-	    let g:NERDTreeIgnore = ['\~$']
-	endif
-	call s:InitVariable("g:NERDTreeShowHidden", 0)
-	call s:InitVariable("g:NERDTreeShowFiles", 1)
-	call s:InitVariable("g:NERDTreeSortDirs", 0)
-	call s:InitVariable("g:NERDTreeSplitVertical", 1)
-	call s:InitVariable("g:NERDTreeWinPos", 1)
-	call s:InitVariable("g:NERDTreeWinSize", 30)
-	
-	let s:running_windows = has("win16") || has("win32") || has("win64")
-"7	BLOCK	6
-	default
-	default
-	default
-	default
-	default
-	default
-	default
-	default
-	default
-	default
-	default
-	default
 "8	LINE	0
 	
 "9	LINE	0
-	//        if ($origWidth == $origHeight) {
-	//            return $image;
-	//        }
+	                                    </sclick>
 "l	CHAR	0
 	3479
 <llllli!$m		ocont	;:wjjo$li	[]Äkl$m		Äkr = $fi	;:wjdd:wddddoks		ort()Äkl$li		lla;:wo:kko[rÄkbÄkbret	 $list;:wjdddd:wdd:wkkkkkkkkkkkkkkkko:u:wjjjjjjkkkkkkkkkkkkkkkjzajjjjjokoko// ÂéªÊéâÊ≠£Âú®ÂÜôÂÖ•ÄkbÄkbÄkbÄkbÊúÄ˛XÂêé‰∏Ä˛X‰∏™Êñá‰ª∂*ÄkbÔºàÔºâÄklÊ≠£ÊùÇÄkbÄkbÊ≠£Âú®ÂÜôÂÖ•ÁöÑÊñá‰ª∂jOpoo()ÄkbÄkbÄkbÄkbÄkbddOPiddopop()Äkl$ifÄkbÄkbdddkuoarray)pÄkbÄkb_pop()Äkl$f		kddokkwwlllllala;:wjoprintdd:wjkkdddd:Wkk:wjjkkjj:w:wjkkjjddkkkkkkp:wddp:wddkkkjukkkkkkljjjjjjjjjjoecho xxx;:wddjjjjp:wddjjp:wddkoecho xxx . ""Äkl\nÄklÄklÄklÄkrxxxxÄklÄklÄklÄklÄklÄkbÄkbÄkbÄkbÄkbÄkb:wlllllli llla;:wdd:w:wkoecho $m	uuwwxxxxi$mt	:wjjjkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjkkkkkkkkkkkkkkbbbblxxxximtimesÄkbÄkbÄkbÄkbÄkbÄkbmtimÄkbÄkbtÄkbime_listyypllhxxxxxinewfilehhhhli_:wjjjjjjjjjjjjko$m		ÄkdÄkd = ÄkbÄkbÄkb[] = $fi	bbjjkkkjkkkkkddddddddko$orderÄkbÄkbÄkbÄkbÄkbtimeÄkbÄkbÄkbÄkborder = ddko$fi	 = ÄkbÄkbÄkbÄkbÄkbÄkbÄkbÄkbko$order = $fi	;:wo$or	 = substr()Äkl$or	ÄkbÄkbÄkbÄkbÄkbÄkb$or	, 9Äkb0, ÄklÄklÄkbsubstr*(ÄkbÄkbÄkbÄkbÄkbÄkbÄkbÄkbstrlen()Äkl$this0>ÄkbÄkb->xm	ÄkrÄkrÄkrÄklÄkrÄkbÄkbÄkr;:wyypwwvwwwwwwwwwwbldixtÄkbÄkbstrPrÄkbÄkb_replace()Äkl''Äkl-Äkr, '', $or	:wyypwwwwliÄkb.xml:wjddkkkkkkkkkkkkkddddddjjjjjjjjjjjddddwjlldwior	kdd:wjjjjjjjkkkkkkkkkkzajjjjjjddjjjp:wkdddd:wko:wk:o:wÄkuÄkuÄkuÄkujjkjjjkdddd:wkofileddkoforeach () {Äkb{}Äklkkkjjxkkkoif () {}Äklkwwli!$fi					oret	:wa;:wjjjiÄkl$fo		Äkbi		 as ÄkbÄkbs $file:wjko:W:wn:wnk:w:wklljkkkkkkkkkkkkkkwwwwbdwistart:wkjyykkpkopjkxddOjxxxxxxjwwwwbdwiPÄkb_paÄkbarsellla {}Äkl:wkkwwwli$content:wj==:wkwwwwjjjjjjjjjjjjjjjjo$content = file_ddko$path = $this->_lÄkbÄkblog			 . ''ÄkbÄkb$fi		Äkb;:wo$content = file_get_contents($pa	);:wo$this->PÄkb_pa	()Äkl$con		Äkr;:wjddkkkkkkkkkkkkkkkkkkkkko:wkdd:wkjjjjjjjjjjjjjjjjjjjjjwwwwllkkddkkkkkjuvkDkkkkkkkkkkkkkkkkkkpjjjjwkkkwwwwwldwifi	kddkkkkkkkjjjjvjjjj=kwwwwwwwiÄkb:wjjo:wkjdddddkkddkokofile() Äkb;ÄklÄkl$pa	bbbi$liÄkbÄkblist = :wkddoprint_r();Äkl$lisÄkbÄkbÄkbÄkbÄkl$listlloecÄkbxit;:wjkkkkjkoecho $p	;:wkjddkkkkkwwwwldwifile:wjjjjkoforeach () {}Äklkwwli$List ÄkbÄkbÄkbÄkbÄkb$LiÄkbÄkbÄkblist as $Line:whhh~oko$line = trim($line);:wkddo:wkoko$startÄkbÄkbÄkbÄkbÄkbÄkbif () {}Äklkwwli$substrÄkbÄkbÄkbÄkbÄkbÄkbÄkbsubstr()Äkl$li		Äkd, 0 Äkb, li8Äkr != ''Äkl<packet:whhhhhhlllllbbbbiÄkb7:wocon			;:Äkbddkocon		;:wj:wvkkYjjpkoj:wwwwwwwliÄkb-7:wllhxxxx:wi):wwwwdwiÄkb</packet>:wbbbbbwwllllllllllllbbbhhiÄkb9:wjjjojkdddddd:wko:wkddkokddddkkkkkjjkkkkkkkkkkkkkkojjdwipro		 kkopr		 fu		 _parse_line()Äkl$packetllao{}ÄkllkkkwwwwbiÄkbÄkbÄkbÄkbpacketjjjjjjjjjjjjjjjjjjjjjjkkko$this->)_ÄkbÄkb_p			()Äkl$li		:wliÄkbÄkbnella;:wjddjjjkkvjjjDkkkkkkkkkkkkkkkkkkkkkpkddkjjwwwldwipa			:wjjkkkddjdd:wjjjjjjjjjjjjjjjjjjjjjdd:wkkkkkkkkkkkkkkkkkkkkkkkoxml = new SimpleXMLElement($string);bbbbbbbi$xxo:wkkwwwwwwbldwipa		:wbbbbbbldwipacketELÄkbelÄkbÄkblement :whhhhhhiÄkb_lÄkbe:Lwokkkkwwwwwbdluldwixmljjwwldwixmlbbbbbbllllllldwi jokoforeach () {}Äklkwwli$p		->children as $coprint_r9);ddkkjddddoprint_r();ÄklÄkl$p		->children:wjjdddddk:wwwwkkwwwi():wjjcc:wkkccjjcxwwvdwbdwi$xml->xpath('/a/b/c')bbbbbbbbbhiÄkbÄkbÄkbpac	wwwwxxxxximessage:wbiblli/packet:wbbbbbiÄkbÄkbÄkbÄkbÄkbÄkbÄkbÄkbÄkl $me	 =lllllllllllllllllllllwwwllx:wo:wkoW:kkkÄkbÄkbÄkbÄkbÄkb
-"q	CHAR	0
-	llll
 "u	CHAR	0
 	507
 <eryÄkbÄkbliÄkb‰øùÂ≠òuuhiÄkb‰øùÂ≠ò:whi :wjkjjjjddukddjddddjddjddjjkdddddjddjddjddjddjddddjddjddj:wkkkkkdd:w:wkkkkjjjjjjjjjjjjjjjjjjjjwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwjkkkkkkkkkkkkkkkkkkkjkkkkkkwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwjjjjjjjjjjjjjjjkkkkkk:wkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkwwwwwwwwwwwwwkkkkkkkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjjjjjbbbbbbvwwwwwwwhdiuhbb:wjjjjk
 "-	CHAR	0
-	n
+	"'<i class=\'fa fa-'+ item.icon + ' ' + item.class +'\'></i>&nbsp;&nbsp;' + item.label | cut:false:8:'...'"
 
 # File marks:
-'0  309  5  /www/branches/bug_branch_b10/application/controllers/base.php
-'1  1  0  ~/.vimrc
-'2  17  5  ~/.vimrc
-'3  13  0  ~/.vimrc
-'4  15  39  ~/.vimrc
-'5  16  55  ~/.vimrc
-'6  12  25  ~/.vimrc
-'7  20  0  ~/.vimrc
-'8  1  0  ~/.vim/colors/Tomorrow.vim
-'9  1  0  ~/.vim/colors/Tomorrow
+'0  390  0  ~/.vim/bundle/vim-javascript/syntax/javascript.vim
+'1  409  0  /www/branches/bug_branch_b10/www/app/scripts/config.js
+'2  1  0  /www/branches/bug_branch_b10/www/app/scripts/app.js
+'3  1  0  /www/branches/bug_branch_b10/www/app/scripts/constants.js
+'4  28  0  /www/branches/bug_branch_b10/application/libraries/bugTracker/AccessControl/QuotaController.php
+'5  236  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+'6  1  0  /www/branches/bug_branch_b10/www/app/views/notification/index.html
+'7  2  4  /www/branches/bug_branch_b10/www/app/views/notification/notify.html
+'8  203  0  /www/branches/bug_branch_b10/application/controllers/api/notification.php
+'9  1  0  /www/branches/bug_branch_b10/application/controllers/api/allNotification
 
 # Jumplist (newest first):
--'  309  5  /www/branches/bug_branch_b10/application/controllers/base.php
--'  80  0  /www/branches/bug_branch_b10/application/controllers/base.php
--'  1  0  ~/.vimrc
--'  17  5  ~/.vimrc
--'  13  0  ~/.vimrc
--'  15  39  ~/.vimrc
--'  16  55  ~/.vimrc
--'  12  25  ~/.vimrc
--'  20  0  ~/.vimrc
--'  1  0  ~/.vim/colors/Tomorrow.vim
--'  1  0  ~/.vim/colors/Tomorrow
--'  11  18  ~/.vimrc
--'  1  0  /www/branches/bug_branch_b10/application/controllers/base.php
--'  569  9  /www/pgyer_server/trunk/application/models/ipa_model.php
--'  2  0  /www/pgyer_server/trunk/application/models/ipa_model.php
--'  1  0  /www/pgyer_server/trunk/application/models/ipa_model.php
--'  135  24  /www/pgyer_server/trunk/application/controllers/apiv1/crash.php
--'  1  0  /www/pgyer_server/trunk/application/controllers/apiv1/crash.php
--'  45  25  /www/pgyer_server/trunk/application/models/crash_model.php
--'  44  24  /www/pgyer_server/trunk/application/models/crash_model.php
--'  1  0  /www/pgyer_server/trunk/application/models/crash_model.php
--'  1  0  /www/pgyer_server/trunk/application/models/crash_
--'  29  0  /www/pgyer_server/trunk/system/database/DB.php
--'  83  7  /www/pgyer_server/trunk/system/database/DB.php
--'  1  0  /www/pgyer_server/trunk/system/database/DB.php
--'  57  2  /www/pgyer_server/trunk/system/database/DB.php
--'  56  0  /www/pgyer_server/trunk/system/database/DB.php
--'  28  0  /www/pgyer_server/trunk/system/database/DB.php
--'  62  1  /www/pgyer_server/trunk/system/database/DB.php
--'  54  0  /www/pgyer_server/trunk/system/database/DB.php
--'  60  2  /www/pgyer_server/trunk/system/database/DB.php
--'  82  0  /www/pgyer_server/trunk/application/config/database.php
--'  83  0  /www/pgyer_server/trunk/application/config/database.php
--'  71  36  /www/pgyer_server/trunk/application/config/database.php
--'  73  0  /www/pgyer_server/trunk/application/config/database.php
--'  4  0  /www/pgyer_server/trunk/application/config/database.php
--'  1  0  /www/pgyer_server/trunk/application/config/database.php
--'  66  10  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  527  28  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  1  0  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  428  33  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  415  37  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  385  48  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  383  73  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  180  35  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  150  46  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  146  121  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  123  50  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  109  10  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  107  24  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  144  35  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  73  31  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  91  32  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  56  0  /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
--'  31  0  /www/pgyer_server/trunk/system/database/DB_driver.php
--'  115  55  /www/pgyer_server/trunk/system/database/DB_driver.php
--'  110  2  /www/pgyer_server/trunk/system/database/DB_driver.php
--'  113  0  /www/pgyer_server/trunk/system/database/DB_driver.php
--'  1  0  /www/pgyer_server/trunk/system/database/DB_driver.php
--'  50  396  /www/pgyer_server/trunk/application/language/zh-cn/price_lang.php
--'  44  4  /www/pgyer_server/trunk/application/language/zh-cn/price_lang.php
--'  45  4  /www/pgyer_server/trunk/application/language/zh-cn/price_lang.php
--'  42  35  /www/pgyer_server/trunk/application/language/zh-cn/price_lang.php
--'  158  51  /www/pgyer_server/trunk/application/language/zh-cn/price_lang.php
--'  1  0  /www/pgyer_server/trunk/application/language/zh-cn/price_lang.php
--'  141  19  /www/pgyer_server/trunk/application/language/zh-cn/price_lang.php
--'  142  80  /www/pgyer_server/trunk/application/language/zh-cn/price_lang.php
--'  143  11  /www/pgyer_server/trunk/application/language/zh-cn/price_lang.php
--'  717  34  /www/pgyer_server/trunk/application/controllers/app.php
--'  2391  34  /www/pgyer_server/trunk/application/controllers/app.php
--'  1830  34  /www/pgyer_server/trunk/application/controllers/app.php
--'  751  52  /www/pgyer_server/trunk/application/controllers/app.php
--'  735  48  /www/pgyer_server/trunk/application/controllers/app.php
--'  734  74  /www/pgyer_server/trunk/application/controllers/app.php
--'  710  13  /www/pgyer_server/trunk/application/controllers/app.php
--'  2425  52  /www/pgyer_server/trunk/application/controllers/app.php
--'  1864  52  /www/pgyer_server/trunk/application/controllers/app.php
--'  1846  42  /www/pgyer_server/trunk/application/controllers/app.php
--'  2409  27  /www/pgyer_server/trunk/application/controllers/app.php
--'  2408  42  /www/pgyer_server/trunk/application/controllers/app.php
--'  1847  27  /www/pgyer_server/trunk/application/controllers/app.php
--'  1542  15  /www/pgyer_server/trunk/application/controllers/app.php
--'  1  0  /www/pgyer_server/trunk/application/controllers/app.php
--'  1  0  /www/pgyer_server/trunk/application/config/config.php
--'  103  4  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  101  6  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  102  37  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  106  0  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  20  6  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  111  0  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  109  8  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  1  0  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  112  0  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  108  8  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  21  0  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  105  8  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  107  0  /www/pgyer_server/trunk/application/models/qrcode_model.php
--'  11  1  /www/pgyer_server/trunk/application/models/qrcode_model.php
+-'  390  0  ~/.vim/bundle/vim-javascript/syntax/javascript.vim
+-'  1  0  ~/.vim/bundle/vim-javascript/syntax/javascript.vim
+-'  409  0  /www/branches/bug_branch_b10/www/app/scripts/config.js
+-'  1  0  /www/branches/bug_branch_b10/www/app/scripts/config.js
+-'  1  0  /www/branches/bug_branch_b10/www/app/scripts/app.js
+-'  1  0  /www/branches/bug_branch_b10/www/app/scripts/constants.js
+-'  134  0  /www/branches/bug_branch_b10/www/app/scripts/constants.js
+-'  28  0  /www/branches/bug_branch_b10/application/libraries/bugTracker/AccessControl/QuotaController.php
+-'  1  0  /www/branches/bug_branch_b10/application/libraries/bugTracker/AccessControl/QuotaController.php
+-'  236  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  226  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  230  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  211  10  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  229  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  228  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  235  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  221  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  216  20  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  208  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  218  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  231  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  236  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  226  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  230  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  211  10  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  229  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  228  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  235  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  221  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  216  20  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  208  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  218  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  231  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  28  0  /www/branches/bug_branch_b10/application/libraries/bugTracker/AccessControl/QuotaController.php
+-'  1  0  /www/branches/bug_branch_b10/application/libraries/bugTracker/AccessControl/QuotaController.php
+-'  236  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  226  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  230  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  211  10  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  229  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  228  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  235  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  221  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  216  20  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  208  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  218  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  231  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  236  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  226  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  230  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  211  10  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  229  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  228  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  235  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  221  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  216  20  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  208  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  218  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  231  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  1  0  /www/branches/bug_branch_b10/www/app/scripts/constants.js
+-'  134  0  /www/branches/bug_branch_b10/www/app/scripts/constants.js
+-'  28  0  /www/branches/bug_branch_b10/application/libraries/bugTracker/AccessControl/QuotaController.php
+-'  1  0  /www/branches/bug_branch_b10/application/libraries/bugTracker/AccessControl/QuotaController.php
+-'  236  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  226  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  230  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  211  10  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  229  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  228  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  235  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  221  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  216  20  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  208  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  218  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  231  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  236  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  226  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  230  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  211  10  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  229  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  228  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  235  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  221  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  216  20  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  208  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  218  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  231  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  28  0  /www/branches/bug_branch_b10/application/libraries/bugTracker/AccessControl/QuotaController.php
+-'  1  0  /www/branches/bug_branch_b10/application/libraries/bugTracker/AccessControl/QuotaController.php
+-'  236  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  226  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  230  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  211  10  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  229  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  228  11  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  235  15  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  221  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  216  20  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+-'  208  12  /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
 
 # Buffer list:
-%/www/branches/bug_branch_b10/application/controllers/base.php	309	5
-%/www/branches/bug_branch_b10/www/app/scripts/controllers/issues.js	187	9
+%~/.vim/bundle/vim-javascript/syntax/javascript.vim	390	0
 
 # History of marks within files (newest to oldest):
 
-> /www/branches/bug_branch_b10/application/controllers/base.php
-	"	309	5
+> ~/.vim/bundle/vim-javascript/syntax/javascript.vim
+	"	390	0
 
-> /www/branches/bug_branch_b10/www/app/scripts/controllers/issues.js
-	"	187	9
-	^	187	10
-	.	188	0
-	+	188	0
+> /www/branches/bug_branch_b10/www/app/scripts/config.js
+	"	409	0
 
-> ~/.vimrc
-	"	1	0
-	.	17	0
-	+	12	20
-	+	11	18
-	+	12	49
-	+	12	19
-	+	14	0
-	+	12	22
-	+	12	26
-	+	14	14
-	+	16	55
-	+	12	26
-	+	14	3
-	+	15	55
-	+	16	55
-	+	15	39
-	+	16	0
-	+	15	39
-	+	17	13
-	+	17	40
-	+	17	13
-	+	17	0
-	+	17	0
-	+	17	0
-
-> ~/.vim/colors/Tomorrow.vim
+> /www/branches/bug_branch_b10/www/app/scripts/app.js
 	"	1	0
 
-> ~/.vim/colors/Tomorrow
+> /www/branches/bug_branch_b10/www/app/scripts/constants.js
 	"	1	0
 
-> /www/pgyer_server/trunk/application/models/ipa_model.php
-	"	569	9
+> /www/branches/bug_branch_b10/application/libraries/bugTracker/AccessControl/QuotaController.php
+	"	28	0
 
-> /www/pgyer_server/trunk/application/controllers/apiv1/crash.php
-	"	135	24
+> /www/branches/bug_branch_b10/www/app/views/common/header.html
+	"	70	131
 
-> /www/pgyer_server/trunk/application/models/crash_model.php
-	"	45	25
+> /www/branches/bug_branch_b10/www/app/scripts/controllers/search.js
+	"	236	15
 
-> /www/pgyer_server/trunk/application/models/crash_
+> /www/branches/bug_branch_b10/www/app/views/notification/index.html
 	"	1	0
 
-> /www/pgyer_server/trunk/system/database/DB.php
-	"	29	0
-	^	30	28
-	.	30	27
-	+	62	0
+> /www/branches/bug_branch_b10/www/app/views/notification/notify.html
+	"	2	4
+
+> /www/branches/bug_branch_b10/application/controllers/api/notification.php
+	"	203	0
+
+> /www/branches/bug_branch_b10/application/controllers/api/allNotification
+	"	1	0
+
+> /www/branches/bug_branch_b10/www/app/views/file/index.html
+	"	5	12
+	^	96	49
+	.	97	0
+	+	4	0
+	+	4	0
+	+	4	0
+	+	4	0
+	+	4	0
+	+	4	33
+	+	4	12
+	+	4	0
+	+	4	0
+	+	4	0
+	+	4	0
+	+	4	11
+	+	4	15
+	+	4	26
+	+	4	12
+	+	4	11
+	+	4	12
+	+	4	0
+	+	4	12
+	+	4	0
+	+	4	0
+	+	4	19
+	+	31	0
+	+	31	0
+	+	5	0
+	+	5	0
+	+	31	0
+	+	12	0
+	+	7	20
+	+	7	20
+	+	8	20
+	+	8	20
+	+	7	0
+	+	7	124
+	+	8	0
+	+	10	0
+	+	31	36
+	+	31	36
+	+	31	36
+	+	31	36
+	+	9	0
+	+	9	46
+	+	10	91
+	+	11	24
+	+	12	0
+	+	9	0
+	+	31	16
+	+	31	0
+	+	30	0
+	+	31	0
+	+	68	89
+	+	93	72
+	+	93	72
+	+	92	60
+	+	7	43
+	+	8	44
+	+	72	60
+	+	73	0
+	+	74	0
+	+	73	59
+	+	98	0
+	+	99	0
+	+	100	0
+	+	99	0
+	+	100	0
+	+	98	56
+	+	99	55
+	+	100	56
+	+	97	0
+	+	96	0
+	+	97	0
+
+> /www/branches/bug_branch_b10/www/app/views/wiki/wiki.html
+	"	1	0
+	.	5	0
+	+	5	11
+	+	5	15
+	+	5	0
+	+	5	12
+	+	5	0
+	+	5	40
+	+	5	0
+	+	5	0
+	+	5	16
+	+	5	0
+
+> /www/branches/bug_branch_b10/www/app/scripts/factories/project.js
+	"	88	0
+	.	63	0
+	+	63	29
+	+	83	8
+	+	64	0
+	+	83	11
+	+	83	35
+	+	83	8
+	+	2	50
+	+	83	24
+	+	83	23
+	+	62	24
+	+	83	44
+	+	64	0
 	+	63	0
-	+	148	0
+
+> /www/branches/bug_branch_b10/www/app/scripts/controllers/file.js
+	"	30	11
+	^	30	12
+	.	30	12
+	+	36	0
+	+	16	0
+	+	20	0
+	+	18	8
+	+	19	8
+	+	31	0
 	+	32	0
 	+	31	0
-	+	30	27
+	+	29	75
+	+	30	75
+	+	36	0
+	+	5	148
+	+	13	49
+	+	14	44
+	+	13	4
+	+	14	48
+	+	29	13
+	+	30	13
+	+	29	12
+	+	30	12
 
-> /www/pgyer_server/trunk/system/core/Loader.php
-	"	1169	39
+> /www/branches/bug_branch_b10/www/app/scripts/controllers/issues.js
+	"	1157	0
+	^	1181	12
+	.	1181	12
+	+	1222	9
+	+	1224	8
+	+	1223	7
+	+	1215	0
+	+	1215	0
+	+	1216	0
+	+	1215	0
+	+	1216	0
+	+	1216	0
+	+	1166	0
+	+	1166	0
+	+	1166	0
+	+	1166	0
+	+	1166	0
+	+	1166	0
+	+	1166	0
+	+	1205	0
+	+	94	33
+	+	95	51
+	+	1206	33
+	+	1208	51
+	+	1169	30
+	+	1170	0
+	+	1171	0
+	+	1172	0
+	+	1173	0
+	+	1174	0
+	+	1175	0
+	+	1176	0
+	+	1177	0
+	+	1177	0
+	+	1177	0
+	+	1177	0
+	+	1170	8
+	+	1171	8
+	+	1172	8
+	+	1173	8
+	+	1174	8
+	+	1175	8
+	+	1176	8
+	+	1177	0
+	+	1169	0
+	+	1186	80
+	+	1195	0
+	+	1195	0
+	+	1195	0
+	+	1195	0
+	+	1188	0
+	+	1189	0
+	+	1190	0
+	+	1191	0
+	+	1192	0
+	+	1193	0
+	+	1194	0
+	+	1188	82
+	+	1189	84
+	+	1190	82
+	+	1191	75
+	+	1192	76
+	+	1193	87
+	+	1194	86
+	+	1192	12
+	+	1186	12
+	+	1190	12
+	+	1191	12
+	+	1190	12
+	+	1186	12
+	+	1193	13
+	+	1194	13
+	+	1193	12
+	+	1194	12
+	+	1187	0
+	+	1186	73
+	+	1192	13
+	+	1186	13
+	+	1190	13
+	+	1186	12
+	+	1190	12
+	+	1192	12
+	+	1207	108
+	+	1206	58
+	+	1204	11
+	+	1204	47
+	+	1198	54
+	+	1188	12
+	+	1624	79
+	+	1632	77
+	+	1273	39
+	+	1218	20
+	+	1224	0
+	+	1255	12
+	+	1243	29
+	+	1275	0
+	+	1274	37
+	+	1142	0
+	+	1255	0
+	+	1531	36
+	+	1535	37
+	+	1179	12
+	+	1181	12
+	n	1274	33
 
-> /www/pgyer_server/trunk/application/controllers/base.php
-	"	8	13
-	.	9	0
-	+	796	0
-	+	792	12
-	+	9	0
-	+	9	30
-	+	9	0
-	+	9	0
-	+	9	18
-	+	9	0
-	+	9	0
+> /www/branches/bug_branch_b10/application/controllers/api/file.php
+	"	134	0
+	^	116	81
+	.	120	0
+	+	101	129
+	+	105	0
+	+	110	0
+	+	116	81
+	+	120	0
 
-> /www/pgyer_server/trunk/system/core/Controller.php
-	"	8	30
+> /www/branches/bug_branch_b10/www/app/scripts/factories/helper.js
+	"	381	8
+	^	530	17
+	.	379	0
+	+	509	26
+	+	523	29
+	+	532	0
+	+	523	26
+	+	514	31
+	+	515	38
+	+	516	28
+	+	517	36
+	+	523	41
+	+	524	44
+	+	530	0
+	+	525	0
+	+	524	36
+	+	531	34
+	+	526	66
+	+	527	44
+	+	529	0
+	+	528	49
+	+	379	0
 
-> /www/pgyer_server/trunk/application/config/autoload.php
-	"	45	0
+> /www/pgyer_server/trunk/application/controllers/backend/download_url_log_sync_elasticsearch.php
+	"	62	0
 
-> /www/pgyer_server/trunk/application/config/database.php
-	"	82	0
-	.	83	0
-	+	83	0
-	+	83	0
-	+	83	0
-	+	83	0
-
-> /www/pgyer_server/trunk/system/database/drivers/mysql/mysql_driver.php
-	"	66	10
-
-> /www/pgyer_server/trunk/system/database/DB_driver.php
-	"	31	0
-
-> /www/pgyer_server/trunk/application/language/zh-cn/price_lang.php
-	"	50	396
-	^	44	482
-	.	44	479
-	+	143	269
-	+	143	236
-	+	143	236
-	+	42	347
-	+	44	158
-	+	44	0
-	+	44	184
-	+	44	506
-	+	44	0
-	+	44	0
-	+	44	479
-
-> /www/pgyer_server/trunk/application/controllers/app.php
-	"	717	34
-	.	1521	0
-	+	1521	0
-	+	1521	0
-
-> /www/pgyer_server/trunk/application/views/manager/dashboard/app.php
-	"	96	71
-	.	96	71
-	+	67	67
-	+	96	71
+> /www/pgyer_server/trunk/application/controllers/boss/stat.php
+	"	1036	0

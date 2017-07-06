@@ -7,6 +7,7 @@ filetype plugin on
 filetype indent on
 
 " Turn syntax highlighting on
+syntax enable
 syntax on
 set background=dark
 colorscheme Tomorrow-Night
